@@ -1,0 +1,16 @@
+<h1> Présentation du Programme</h1>
+
+<p>
+Titre: <%= @programme.titre%>
+</p>
+
+<p>
+Type: <%= @programme.type_programme%>
+</p>
+
+<p>
+Classification: <%= @programme.classification%>
+</p>
+
+<%= link_to "Tous les programmes", programmes_path %>
+<%= link_to "Modifier", edit_programme_path(@programme) %>

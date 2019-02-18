@@ -1,0 +1,33 @@
+<% if @programme.errors.any? %>
+<h2> The following errors prevented the programme from getting created</h2>
+<ul>
+  <% @programme.errors.full_messages.each do |msg| %>
+  <li> <%= msg %> </li>
+  <% end%>
+</ul>
+<%end%>
+
+<%= form_for @programme do |f| %>
+
+<p>
+<%= f.label :titre %><br/>
+<%= f.text_field :titre %>
+</p>
+
+<p>
+<%= f.label :type_programme %><br/>
+<%= f.text_field :type_programme %>
+</p>
+
+<p>
+<%= f.label :classification %><br/>
+<%= f.text_field :classification %>
+</p>
+
+<p>
+<%= f.submit %>
+</p>
+
+<% end%>
+
+<%= link_to "Tous les programmes", programmes_path %>
