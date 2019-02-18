@@ -10,12 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_105147) do
+ActiveRecord::Schema.define(version: 2019_02_18_160501) do
 
   create_table "programmes", force: :cascade do |t|
     t.string "titre"
     t.string "type_programme"
     t.string "classification"
+  end
+
+  create_table "realisateurs", force: :cascade do |t|
+    t.string "nom"
   end
 
 end

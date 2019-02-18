@@ -1,0 +1,7 @@
+class CreateRealisateurs < ActiveRecord::Migration[5.2]
+  def change
+    create_table :realisateurs do |t|
+      t.string :nom
+    end
+  end
+end
