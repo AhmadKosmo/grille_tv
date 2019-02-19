@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_152644) do
+ActiveRecord::Schema.define(version: 2019_02_19_154008) do
 
   create_table "chaines", force: :cascade do |t|
     t.string "nom"
+  end
+
+  create_table "diffusions", force: :cascade do |t|
+    t.string "jour"
+    t.string "heure"
+    t.integer "programme_id"
+    t.integer "chaine_id"
   end
 
   create_table "programmes", force: :cascade do |t|
