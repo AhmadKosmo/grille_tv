@@ -7,27 +7,55 @@
 </ul>
 <%end%>
 
-<%= form_for @programme do |f| %>
 
-<p>
-<%= f.label :titre %><br/>
-<%= f.text_field :titre %>
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @programme, html: {class: "form-horizontal", role: "form"} do |f| %>
 
-<p>
-<%= f.label :type_programme %><br/>
-<%= f.text_field :type_programme %>
-</p>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :titre %>
+      </div>
 
-<p>
-<%= f.label :classification %><br/>
-<%= f.text_field :classification %>
-</p>
+      <div class="col-sm-10">
+        <%= f.text_field :titre, class: "form-control", autofocus: true %>
+      </div>
+    </div>
 
-<p>
-<%= f.submit %>
-</p>
 
-<% end%>
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :type_programme %>
+      </div>
 
-<%= link_to "Tous les programmes", programmes_path %>
+      <div class="col-sm-10">
+        <%= f.text_field :type_programme, class: "form-control", autofocus: true %>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :classification %>
+      </div>
+
+      <div class="col-sm-10">
+        <%= f.text_field :classification, class: "form-control", autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+
+
+
+    <% end%>
+    <div class="col-xs-offset-4 col-xs-4">
+      [<%= link_to "Tous les programmes", programmes_path %>]
+    </div>
+
+  </div>
+</div>
