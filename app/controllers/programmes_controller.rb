@@ -9,14 +9,14 @@ class ProgrammesController < ApplicationController
   end
 
   def create
-  @programme = Programme.new(programme_params)
-  # @programme.user = User.first
-  if @programme.save
-    flash[:notice] = "Pogramme was successfully created"
-  redirect_to programme_path(@programme)
-  else
-    render 'new'
-  end
+    @programme = Programme.new(programme_params)
+    @programme.realisateur = Realisateur.first
+    if @programme.save
+      flash[:notice] = "Le Programme a bien été créé"
+      redirect_to programme_path(@programme)
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -29,12 +29,13 @@ class ProgrammesController < ApplicationController
 
   def update
     @programme = Programme.find(params[:id])
-  if @programme.update(programme_params)
-    flash[:notice] = "Programme a bien été modifié"
-  redirect_to programme_path(@programme)
-  else
-    render 'edit'
-  end
+    @programme.realisateur = Realisateur.first
+    if @programme.update(programme_params)
+      flash[:notice] = "Programme a bien été modifié"
+      redirect_to programme_path(@programme)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

@@ -1,4 +1,5 @@
 class Programme < ActiveRecord::Base
+  belongs_to :realisateur
   validates :titre, presence: true
   validates :type_programme, presence: true, inclusion: { in: ['Comedy',
     'Action',
@@ -15,4 +16,5 @@ class Programme < ActiveRecord::Base
     'PEGI 12',
     'PEGI 16',
     'PEGI 18']}
+    validates :realisateur_id, presence: true
 end

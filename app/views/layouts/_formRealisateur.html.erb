@@ -1,0 +1,23 @@
+<% if @realisateur.errors.any? %>
+<h2> The following errors prevented the réalisateur from getting created</h2>
+<ul>
+  <% @realisateur.errors.full_messages.each do |msg| %>
+  <li> <%= msg %> </li>
+  <% end%>
+</ul>
+<%end%>
+
+<%= form_for @realisateur do |f| %>
+
+<p>
+<%= f.label :nom %><br/>
+<%= f.text_field :nom %>
+</p>
+
+<p>
+<%= f.submit %>
+</p>
+
+<% end%>
+
+<%= link_to "Tous les réalisateurs", realisateurs_path %>
