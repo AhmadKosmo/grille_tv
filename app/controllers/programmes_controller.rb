@@ -2,15 +2,24 @@ class ProgrammesController < ApplicationController
 
   def index
     @programmes = Programme.all
+    @realisateurs = Realisateur.all
   end
 
   def new
     @programme = Programme.new
+    @realisateurs = Realisateur.all
+
+    @array_of_noms_realisateurs_ids_realisateurs =[]
+    @realisateurs.each do |realisateur|
+      a = [realisateur.nom, realisateur.id]
+      @array_of_noms_realisateurs_ids_realisateurs.push(a)
+    end
+
   end
 
   def create
     @programme = Programme.new(programme_params)
-    @programme.realisateur = Realisateur.first
+    # @programme.realisateur = Realisateur.first
     if @programme.save
       flash[:notice] = "Le Programme a bien été créé"
       redirect_to programme_path(@programme)
@@ -25,6 +34,13 @@ class ProgrammesController < ApplicationController
 
   def edit
     @programme = Programme.find(params[:id])
+    @realisateurs = Realisateur.all
+
+    @array_of_noms_realisateurs_ids_realisateurs =[]
+    @realisateurs.each do |realisateur|
+      a = [realisateur.nom, realisateur.id]
+      @array_of_noms_realisateurs_ids_realisateurs.push(a)
+    end
   end
 
   def update
@@ -47,6 +63,6 @@ class ProgrammesController < ApplicationController
 
   private
   def programme_params
-    params.require(:programme).permit(:titre, :type_programme, :classification)
+    params.require(:programme).permit(:titre, :type_programme, :classification, :realisateur_id)
   end
 end

@@ -18,6 +18,7 @@
       <th> Titre </th>
       <th> Type </th>
       <th> Classification </th>
+      <th> Réalisateur </th>
       <th>  </th>
       <th>  </th>
       <th>  </th>
@@ -31,6 +32,7 @@
       <td> <%= programme.titre %> </td>
       <td> <%= programme.type_programme %> </td>
       <td> <%= programme.classification %> </td>
+      <td> <%= @realisateurs.find(programme.realisateur_id).nom%> </td>
       <td>  | <%= link_to "Afficher", programme_path(programme) %>  </td>
       <td>  | <%= link_to "Modifier", edit_programme_path(programme) %>  </td>
       <td>  | <%= link_to "Supprimer", programme_path(programme), method: :delete, data: {confirm: "Êtes-vous sûr?"} %> </td>
