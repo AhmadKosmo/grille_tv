@@ -1,0 +1,33 @@
+<div class="center jumbotron">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2> Information sur la Chaine</h2>
+    </div>
+
+    <div class="col-sm-6 btn-add">
+      <%= link_to "    Modifier la chaine", edit_chaine_path(@chaine), class: "btn btn-primary glyphicon glyphicon-pencil btn-xlarge"%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @chaine, html: {class: "form-horizontal", role: "form"} do |f| %>
+
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :nom %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= f.text_field :nom, class: "form-control", disabled: true %>
+        </div>
+      </div>
+
+      <% end%>
+      <div class="col-xs-offset-4 col-xs-4">
+        [<%= link_to "Tous les chaines", chaines_path %>]
+      </div>
+
+    </div>
+  </div>
+</div>

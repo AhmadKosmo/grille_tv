@@ -1,0 +1,38 @@
+<div class="center jumbotron">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2> Tous les Chaines</h2>
+    </div>
+
+    <div class="col-sm-6 btn-add">
+      <%= link_to "    Ajouter une nouvelle chaine", new_chaine_path, class: "btn btn-primary glyphicon glyphicon-plus btn-xlarge"%>
+    </div>
+  </div>
+
+
+
+<table class="table tb">
+  <thead>
+    <tr>
+      <th># id </th>
+      <th> Nom </th>
+      <th>  </th>
+      <th>  </th>
+      <th>  </th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @chaines.each do |chaine| %>
+    <tr>
+      <td> <%= chaine.id %> </td>
+      <td> <%= chaine.nom %> </td>
+      <td>  | <%= link_to "Afficher", chaine_path(chaine) %>  </td>
+      <td>  | <%= link_to "Modifier", edit_chaine_path(chaine) %>  </td>
+      <td>  | <%= link_to "Supprimer", chaine_path(chaine), method: :delete, data: {confirm: "Êtes-vous sûr?"} %> </td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>
+
+</div>

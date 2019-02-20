@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   resources :programmes
   resources :realisateurs
+  resources :chaines
+  resources :diffusions
   root 'programmes#index'
 end

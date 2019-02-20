@@ -1,0 +1,42 @@
+<div class="center jumbotron">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2> Tous les Diffusions</h2>
+    </div>
+
+    <div class="col-sm-6 btn-add">
+      <%= link_to "    Ajouter une nouvelle diffusion", new_diffusion_path, class: "btn btn-primary glyphicon glyphicon-plus btn-xlarge"%>
+    </div>
+  </div>
+
+
+
+<table class="table tb">
+  <thead>
+    <tr>
+      <th># id </th>
+      <th> Programme </th>
+      <th> Chaine </th>
+      <th> Date & Heure </th>
+      <th>  </th>
+      <th>  </th>
+      <th>  </th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @diffusions.each do |diffusion| %>
+    <tr>
+      <td> <%= diffusion.id %> </td>
+      <td> <%= @programmes.find(diffusion.programme_id).titre%> </td>
+      <td> <%= @chaines.find(diffusion.chaine_id).nom%> </td>
+      <td> <%= diffusion.jour %> à <%= diffusion.heure %> </td>
+      <td>  | <%= link_to "Afficher", diffusion_path(diffusion) %>  </td>
+      <td>  | <%= link_to "Modifier", edit_diffusion_path(diffusion) %>  </td>
+      <td>  | <%= link_to "Supprimer", diffusion_path(diffusion), method: :delete, data: {confirm: "Êtes-vous sûr?"} %> </td>
+    </tr>
+  </tbody>
+  <%end%>
+</table>
+
+</div>

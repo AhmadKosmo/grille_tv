@@ -19,7 +19,7 @@ class ProgrammesController < ApplicationController
 
   def create
     @programme = Programme.new(programme_params)
-    # @programme.realisateur = Realisateur.first
+    
     if @programme.save
       flash[:notice] = "Le Programme a bien été créé"
       redirect_to programme_path(@programme)
@@ -45,7 +45,7 @@ class ProgrammesController < ApplicationController
 
   def update
     @programme = Programme.find(params[:id])
-    @programme.realisateur = Realisateur.first
+
     if @programme.update(programme_params)
       flash[:notice] = "Programme a bien été modifié"
       redirect_to programme_path(@programme)
@@ -56,9 +56,9 @@ class ProgrammesController < ApplicationController
 
   def destroy
     @programme = Programme.find(params[:id])
-  @programme.destroy
-  flash[:notice] = "Le programme a bien été supprimé"
-  redirect_to programmes_path
+    @programme.destroy
+    flash[:notice] = "Le programme a bien été supprimé"
+    redirect_to programmes_path
   end
 
   private
