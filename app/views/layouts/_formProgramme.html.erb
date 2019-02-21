@@ -37,7 +37,8 @@
           ['Historical','Historical'],
           ['Horror','Horror'],
           ['Romance','Romance'],
-          ['Social','Social']]), class: "form-control", autofocus: true%>
+          ['Social','Social']],
+            :selected => [@programme.type_programme, @programme.type_programme]), class: "form-control", autofocus: true%>
       </div>
     </div>
 
@@ -52,7 +53,8 @@
           ['PEGI 7','PEGI 7'],
           ['PEGI 12','PEGI 12'],
           ['PEGI 16','PEGI 16'],
-          ['PEGI 18','PEGI 18']]), class: "form-control", autofocus: true%>
+          ['PEGI 18','PEGI 18']],
+            :selected => [@programme.classification, @programme.classification]), class: "form-control", autofocus: true%>
       </div>
     </div>
 
@@ -62,7 +64,8 @@
       </div>
 
       <div class="col-sm-10">
-        <%= f.select :realisateur_id, options_for_select(@array_of_noms_realisateurs_ids_realisateurs), class: "form-control", autofocus: true%>
+        <%= f.select :realisateur_id, options_for_select(@array_of_noms_realisateurs_ids_realisateurs,
+          :selected => [Realisateur.find(@programme.realisateur_id).nom, @programme.realisateur_id]), class: "form-control", autofocus: true%>
       </div>
     </div>
 

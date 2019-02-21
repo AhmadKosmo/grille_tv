@@ -3,6 +3,13 @@ class ProgrammesController < ApplicationController
   def index
     @programmes = Programme.all
     @realisateurs = Realisateur.all
+
+    if (params[:search])
+      @programme = Programme.where(titre: params[:search])
+      params[:id] = @programme.ids
+      render 'show'
+    end
+
   end
 
   def new
@@ -19,7 +26,7 @@ class ProgrammesController < ApplicationController
 
   def create
     @programme = Programme.new(programme_params)
-    
+
     if @programme.save
       flash[:notice] = "Le Programme a bien été créé"
       redirect_to programme_path(@programme)
@@ -29,10 +36,19 @@ class ProgrammesController < ApplicationController
   end
 
   def show
-    @programme = Programme.find(params[:id])
+    if (params[:search])
+      @programme = Programme.where(titre: params[:search])
+    else
+      @programme = Programme.find(params[:id])
+    end
   end
 
   def edit
+    if (params[:search])
+      # @programme = Programme.where(titre: params[:search])
+      # params[:id] = @programme.ids
+    end
+
     @programme = Programme.find(params[:id])
     @realisateurs = Realisateur.all
 
