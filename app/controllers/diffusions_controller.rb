@@ -4,8 +4,8 @@ class DiffusionsController < ApplicationController
     @programmes = Programme.all
     @chaines = Chaine.all
 
-    if (params[:jour].present?)
-      @diffusions = Diffusion.where(jour: params[:jour])
+    if (params[:jour] && params[:heure])
+      @diffusions = Diffusion.where(jour: params[:jour], heure: params[:heure])
     else
       @diffusions = Diffusion.all
     end

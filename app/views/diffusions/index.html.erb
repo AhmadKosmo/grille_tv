@@ -31,7 +31,7 @@
             ['Jeudi','Jeudi'],
             ['Vendredi','Vendredi'],
             ['Samedi','Samedi'],
-            ['Dimanche','Dimanche']]), class: "form-control", autofocus: true%>
+            ['Dimanche','Dimanche']]), html: {class: "form-control test", id: "test", autofocus: true}%>
         </div>
 
         <div class="control-label col-sm-1" style="border: 0px solid black;">
@@ -44,11 +44,16 @@
             ['11:40','11:40'],
             ['12:00','12:00'],
             ['12:30','12:30'],
-            ['13:00','13:00']]), class: "form-control", autofocus: true%>
+            ['13:00','13:00']]), class: "form-control test", autofocus: true%>
         </div>
 
         <div class="col-sm-offset-1 col-sm-2" style="border: 0px solid black;">
-          <%= link_to "    Filtrer les diffusions", diffusions_path(:jour => "Mercredi", :heure => "11:30"), class: "btn btn-info glyphicon glyphicon-filter btn-filter-diffusion"%>
+          <%= link_to "    Filtrer les diffusions",
+          diffusions_path(:jour => "Mercredi", :heure => "11:30"),
+          class: "btn btn-info glyphicon glyphicon-filter btn-filter-diffusion",
+            :onclick => 'get_selected_day()',
+            :id => 'link_to_diffusions'%>
+          <!-- <button onclick="get_selected_day()">Try it</button> -->
           <!-- <%= f.submit class: 'btn btn-info glyphicon glyphicon-filter btn-filter-diffusion' %> -->
         </div>
       </div>
@@ -61,12 +66,6 @@
       <% end%>
     </div>
   </div>
-
-
-
-
-
-
 
 <table class="table tb">
   <thead>
@@ -97,3 +96,26 @@
 </table>
 
 </div>
+
+<!-- <p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p> -->
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("p").click(function(){
+     valeur= $("#diffusion_jour").val()
+     alert(valeur);
+  });
+});
+
+function get_selected_day(){
+  var jour = document.getElementById('diffusion_jour').value
+  var heure = document.getElementById('diffusion_heure').value
+  var href = "/diffusions?heure="+heure+"&amp;jour="+jour
+  var link_to = document.getElementById('link_to_diffusions').setAttribute("href", href);
+
+  // alert(jour);
+}
+</script>
