@@ -1,8 +1,15 @@
 class DiffusionsController < ApplicationController
   def index
-    @diffusions = Diffusion.all
+
     @programmes = Programme.all
     @chaines = Chaine.all
+
+    if (params[:jour].present?)
+      @diffusions = Diffusion.where(jour: params[:jour])
+    else
+      @diffusions = Diffusion.all
+    end
+
   end
 
   def new

@@ -1,13 +1,70 @@
 <div class="center jumbotron">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="border: 0px solid black;">
       <h2> Tous les Diffusions</h2>
     </div>
 
-    <div class="col-sm-6 btn-add">
+    <div class="col-sm-6 btn-add" style="border: 0px solid black;">
       <%= link_to "    Ajouter une nouvelle diffusion", new_diffusion_path, class: "btn btn-primary glyphicon glyphicon-plus btn-xlarge"%>
     </div>
   </div>
+
+
+
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @diffusion = Diffusion.new,
+      html: {class: "form-horizontal", role: "form"} do |f| %>
+
+      <div class="form-group">
+        <div class="control-label col-sm-3" style="border: 0px solid black;">
+          <%= f.label :jour %>
+        </div>
+
+        <div class="col-sm-2" style="border: 0px solid black;">
+          <%= f.select :jour, options_for_select([['Lundi', 'Lundi'],
+            ['Mardi','Mardi'],
+            ['Mercredi','Mercredi'],
+            ['Jeudi','Jeudi'],
+            ['Vendredi','Vendredi'],
+            ['Samedi','Samedi'],
+            ['Dimanche','Dimanche']]), class: "form-control", autofocus: true%>
+        </div>
+
+        <div class="control-label col-sm-1" style="border: 0px solid black;">
+          <%= f.label :heure %>
+        </div>
+
+        <div class="col-sm-2" style="border: 0px solid black;">
+          <%= f.select :heure, options_for_select([['11:00','11:00'],
+            ['11:30','11:30'],
+            ['11:40','11:40'],
+            ['12:00','12:00'],
+            ['12:30','12:30'],
+            ['13:00','13:00']]), class: "form-control", autofocus: true%>
+        </div>
+
+        <div class="col-sm-offset-1 col-sm-2" style="border: 0px solid black;">
+          <%= link_to "    Filtrer les diffusions", diffusions_path(:jour => "Mercredi", :heure => "11:30"), class: "btn btn-info glyphicon glyphicon-filter btn-filter-diffusion"%>
+          <!-- <%= f.submit class: 'btn btn-info glyphicon glyphicon-filter btn-filter-diffusion' %> -->
+        </div>
+      </div>
+
+
+      <div class="form-group">
+
+      </div>
+
+      <% end%>
+    </div>
+  </div>
+
+
+
+
 
 
 
