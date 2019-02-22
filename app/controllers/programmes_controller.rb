@@ -5,8 +5,8 @@ class ProgrammesController < ApplicationController
     @realisateurs = Realisateur.all
 
     if (params[:search])
-      @programme = Programme.where(titre: params[:search])
-      params[:id] = @programme.ids
+      @programmes = Programme.where(titre: params[:search])
+      @programme = @programmes.first
       render 'show'
     end
 
@@ -38,6 +38,9 @@ class ProgrammesController < ApplicationController
   def show
     if (params[:search])
       @programme = Programme.where(titre: params[:search])
+      @realisateur = Realisateur.find(@programme.realisateur_id)
+      params[:id] = @programme.ids
+      params[:realisateur_id] = @programme.realisateur_id
     else
       @programme = Programme.find(params[:id])
     end
