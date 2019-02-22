@@ -2,6 +2,12 @@ class ChainesController < ApplicationController
 
   def index
     @chaines = Chaine.all
+
+    if (params[:search])
+      @chaines = Chaine.where(nom: params[:search])
+      @chaine = @chaines.first
+      render 'show'
+    end
   end
 
 

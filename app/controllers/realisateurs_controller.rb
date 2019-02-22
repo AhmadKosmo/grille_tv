@@ -2,6 +2,13 @@ class RealisateursController < ApplicationController
 
   def index
     @realisateurs = Realisateur.all
+
+    if (params[:search])
+      @realisateurs = Realisateur.where(nom: params[:search])
+      @realisateur = @realisateurs.first
+      render 'show'
+    end
+
   end
 
   def new

@@ -20,34 +20,23 @@
       html: {class: "form-horizontal", role: "form"} do |f| %>
 
       <div class="form-group">
-        <div class="control-label col-sm-3" style="border: 0px solid black;">
+        <div class="control-label col-sm-3" style="border: 1px solid black;">
           <%= f.label :jour %>
         </div>
 
-        <div class="col-sm-2" style="border: 0px solid black;">
-          <%= f.select :jour, options_for_select([['Lundi', 'Lundi'],
-            ['Mardi','Mardi'],
-            ['Mercredi','Mercredi'],
-            ['Jeudi','Jeudi'],
-            ['Vendredi','Vendredi'],
-            ['Samedi','Samedi'],
-            ['Dimanche','Dimanche']]), html: {class: "form-control test", id: "test", autofocus: true}%>
+        <div class="col-sm-2" style="border: 1px solid black;">
+          <%= f.select :jour, options_for_select(@array_of_jours_jours), html: {class: "form-control test", id: "test", autofocus: true}%>
         </div>
 
-        <div class="control-label col-sm-1" style="border: 0px solid black;">
+        <div class="control-label col-sm-1" style="border: 1px solid black;">
           <%= f.label :heure %>
         </div>
 
-        <div class="col-sm-2" style="border: 0px solid black;">
-          <%= f.select :heure, options_for_select([['11:00','11:00'],
-            ['11:30','11:30'],
-            ['11:40','11:40'],
-            ['12:00','12:00'],
-            ['12:30','12:30'],
-            ['13:00','13:00']]), class: "form-control test", autofocus: true%>
+        <div class="col-sm-2" style="border: 1px solid black;">
+          <%= f.select :heure, options_for_select(@array_of_heures_heures), class: "form-control test", autofocus: true%>
         </div>
 
-        <div class="col-sm-offset-1 col-sm-2" style="border: 0px solid black;">
+        <div class="col-sm-offset-1 col-sm-2" style="border: 1px solid black;">
           <%= link_to "    Filtrer les diffusions",
           diffusions_path(:jour => "Mercredi", :heure => "11:30"),
           class: "btn btn-info glyphicon glyphicon-filter btn-filter-diffusion",

@@ -8,6 +8,92 @@
   </div>
 
 
-<%= render 'layouts/formProgramme' %>
+  <% if @programme.errors.any? %>
+  <h2> The following errors prevented the programme from getting created</h2>
+  <ul>
+    <% @programme.errors.full_messages.each do |msg| %>
+    <li> <%= msg %> </li>
+    <% end%>
+  </ul>
+  <%end%>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @programme, html: {class: "form-horizontal", role: "form"} do |f| %>
+
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :titre %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= f.text_field :titre, class: "form-control", autofocus: true %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :type_programme %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= f.select :type_programme, options_for_select([['Action', 'Action'],
+            ['Adventure','Adventure'],
+            ['Crime','Crime'],
+            ['Drama','Drama'],
+            ['Fantasy','Fantasy'],
+            ['Historical','Historical'],
+            ['Horror','Horror'],
+            ['Romance','Romance'],
+            ['Social','Social']],
+              :selected => [@programme.type_programme, @programme.type_programme]), class: "form-control", autofocus: true%>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :classification %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= f.select :classification, options_for_select([['PEGI 3', 'PEGI 3'],
+            ['PEGI 7','PEGI 7'],
+            ['PEGI 12','PEGI 12'],
+            ['PEGI 16','PEGI 16'],
+            ['PEGI 18','PEGI 18']],
+              :selected => [@programme.classification, @programme.classification]), class: "form-control", autofocus: true%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :realisateur %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= f.select :realisateur_id, options_for_select(@array_of_noms_realisateurs_ids_realisateurs,
+            :selected => [Realisateur.find(@programme.realisateur_id).nom, @programme.realisateur_id]), class: "form-control", autofocus: true%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit class: 'btn btn-primary btn-lg', value: "Modifier le programme" %>
+        </div>
+      </div>
+
+
+
+      <% end%>
+      <div class="col-xs-offset-4 col-xs-4">
+        [<%= link_to "Tous les programmes", programmes_path %>]
+      </div>
+
+    </div>
+  </div>
+
 
 </div>

@@ -10,6 +10,23 @@ class DiffusionsController < ApplicationController
       @diffusions = Diffusion.all
     end
 
+    @diffusions_tmp = Diffusion.all
+    @array_of_heures_heures =[]
+    @diffusions_tmp.each do |diffusion|
+      a = [diffusion.heure, diffusion.heure]
+      @array_of_heures_heures.push(a) unless @array_of_heures_heures.include?(a)
+    end
+
+    @array_of_heures_heures = @array_of_heures_heures.sort
+
+    @array_of_jours_jours =[]
+    @diffusions_tmp.each do |diffusion|
+      a = [diffusion.jour, diffusion.jour]
+      @array_of_jours_jours.push(a) unless @array_of_jours_jours.include?(a)
+    end
+
+    @array_of_jours_jours = @array_of_jours_jours.sort
+
   end
 
   def new
