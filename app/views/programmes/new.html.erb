@@ -6,12 +6,23 @@
 </div>
 
 <% if @programme.errors.any? %>
-<h2> The following errors prevented the programme from getting created</h2>
-<ul>
-  <% @programme.errors.full_messages.each do |msg| %>
-  <li> <%= msg %> </li>
-  <% end%>
-</ul>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="panel panel-danger">
+      <h2 class="panel-title">
+        <%= pluralize(@programme.errors.count, "error") %>
+        evite le programme d'etre créer:
+      </h2>
+      <div class = "panel-body">
+        <ul>
+          <% @programme.errors.full_messages.each do |msg| %>
+          <li> <%= msg %> </li>
+          <% end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <%end%>
 
 

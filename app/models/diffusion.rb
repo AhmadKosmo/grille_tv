@@ -1,6 +1,6 @@
 class Diffusion < ActiveRecord::Base
-  has_many :programmes
-  has_many :chaines
+  belongs_to :programmes
+  belongs_to :chaines
   validates :jour, presence: true
   validates :heure, presence: true
   validates :programme_id, presence: true

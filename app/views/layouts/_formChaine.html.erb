@@ -1,11 +1,4 @@
-<% if @chaine.errors.any? %>
-<h2> The following errors prevented the chaine from getting created</h2>
-<ul>
-  <% @chaine.errors.full_messages.each do |msg| %>
-  <li> <%= msg %> </li>
-  <% end%>
-</ul>
-<%end%>
+<%= render 'shared/errors', obj: @chaine%>
 
 <div class="row">
   <div class="col-md-12">

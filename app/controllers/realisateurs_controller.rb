@@ -1,7 +1,7 @@
 class RealisateursController < ApplicationController
 
   def index
-    @realisateurs = Realisateur.all
+    @realisateurs = Realisateur.paginate(page: params[:page], per_page: 8)
 
     if (params[:search])
       @realisateurs = Realisateur.where(nom: params[:search])
@@ -18,7 +18,7 @@ class RealisateursController < ApplicationController
   def create
     @realisateur = Realisateur.new(realisateur_params)
     if @realisateur.save
-      flash[:notice] = "Le Réalisateur a bien été créé"
+      flash[:success] = "Le Réalisateur a bien été créé"
       redirect_to realisateur_path(@realisateur)
     else
       render 'new'
@@ -32,7 +32,7 @@ class RealisateursController < ApplicationController
   def update
     @realisateur = Realisateur.find(params[:id])
     if @realisateur.update(realisateur_params)
-      flash[:notice] = "Réalisateur a bien été modifié"
+      flash[:success] = "Réalisateur a bien été modifié"
       redirect_to realisateur_path(@realisateur)
     else
       render 'edit'
@@ -42,7 +42,7 @@ class RealisateursController < ApplicationController
   def destroy
     @realisateur = Realisateur.find(params[:id])
     @realisateur.destroy
-    flash[:notice] = "Le Réalisateur a bien été supprimé"
+    flash[:danger] = "Le Réalisateur a bien été supprimé"
     redirect_to realisateurs_path
   end
 

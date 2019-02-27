@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :realisateurs
   resources :chaines
   resources :diffusions
-  root 'programmes#index'
+  root 'diffusions#index'
 
   # get 'filterDiffusions', to: 'diffusions#filter'
 end

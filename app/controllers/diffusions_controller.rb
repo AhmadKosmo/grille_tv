@@ -7,7 +7,7 @@ class DiffusionsController < ApplicationController
     if (params[:jour] && params[:heure])
       @diffusions = Diffusion.where(jour: params[:jour], heure: params[:heure])
     else
-      @diffusions = Diffusion.all
+      @diffusions = Diffusion.paginate(page: params[:page], per_page: 8)
     end
 
     @diffusions_tmp = Diffusion.all
@@ -52,7 +52,7 @@ class DiffusionsController < ApplicationController
     @diffusion = Diffusion.new(diffusion_params)
 
     if @diffusion.save
-      flash[:notice] = "La Diffusion a bien été créée"
+      flash[:success] = "La Diffusion a bien été créée"
       redirect_to diffusion_path(@diffusion)
     else
       render 'new'
@@ -93,7 +93,7 @@ class DiffusionsController < ApplicationController
     @diffusion = Diffusion.find(params[:id])
 
     if @diffusion.update(diffusion_params)
-      flash[:notice] = "La diffusion a bien été modifiée"
+      flash[:success] = "La diffusion a bien été modifiée"
       redirect_to diffusion_path(@diffusion)
     else
       render 'edit'
@@ -103,7 +103,7 @@ class DiffusionsController < ApplicationController
   def destroy
     @diffusion = Diffusion.find(params[:id])
     @diffusion.destroy
-    flash[:notice] = "La diffusion a bien été supprimée"
+    flash[:danger] = "La diffusion a bien été supprimée"
     redirect_to diffusions_path
   end
 

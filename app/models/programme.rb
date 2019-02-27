@@ -1,5 +1,6 @@
 class Programme < ActiveRecord::Base
   belongs_to :realisateur
+  has_many :diffusions
   validates :titre, presence: true
   validates :type_programme, presence: true, inclusion: { in: ['Comedy',
     'Action',

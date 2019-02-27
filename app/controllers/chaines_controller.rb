@@ -1,7 +1,7 @@
 class ChainesController < ApplicationController
 
   def index
-    @chaines = Chaine.all
+    @chaines = Chaine.paginate(page: params[:page], per_page: 8)
 
     if (params[:search])
       @chaines = Chaine.where(nom: params[:search])
@@ -19,7 +19,7 @@ class ChainesController < ApplicationController
     @chaine = Chaine.new(chaine_params)
 
     if @chaine.save
-      flash[:notice] = "La Chaine a bien été créée"
+      flash[:success] = "La Chaine a bien été créée"
       redirect_to chaine_path(@chaine)
     else
       render 'new'
@@ -38,7 +38,7 @@ class ChainesController < ApplicationController
     @chaine = Chaine.find(params[:id])
 
     if @chaine.update(chaine_params)
-      flash[:notice] = "La chaine a bien été modifié"
+      flash[:success] = "La chaine a bien été modifié"
       redirect_to chaine_path(@chaine)
     else
       render 'edit'
@@ -48,7 +48,7 @@ class ChainesController < ApplicationController
   def destroy
     @chaine = Chaine.find(params[:id])
     @chaine.destroy
-    flash[:notice] = "La Chaine a bien été supprimée"
+    flash[:danger] = "La Chaine a bien été supprimée"
     redirect_to chaines_path
   end
 

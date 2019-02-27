@@ -1,3 +1,5 @@
+<%= render 'shared/errors', obj: @chaine %>
+
 <div class="center jumbotron">
   <div class="row">
     <div class="col-sm-6">
@@ -6,16 +8,6 @@
       </h2>
     </div>
   </div>
-
-
-  <% if @chaine.errors.any? %>
-  <h2> The following errors prevented the chaine from getting created</h2>
-  <ul>
-    <% @chaine.errors.full_messages.each do |msg| %>
-    <li> <%= msg %> </li>
-    <% end%>
-  </ul>
-  <%end%>
 
   <div class="row">
     <div class="col-md-12">

@@ -1,7 +1,8 @@
 class ProgrammesController < ApplicationController
 
   def index
-    @programmes = Programme.all
+    # @programmes = Programme.all
+    @programmes = Programme.paginate(page: params[:page], per_page: 8)
     @realisateurs = Realisateur.all
 
     if (params[:search])
@@ -28,7 +29,7 @@ class ProgrammesController < ApplicationController
     @programme = Programme.new(programme_params)
 
     if @programme.save
-      flash[:notice] = "Le Programme a bien été créé"
+      flash[:success] = "Le Programme a bien été créé"
       redirect_to programme_path(@programme)
     else
       render 'new'
@@ -66,7 +67,7 @@ class ProgrammesController < ApplicationController
     @programme = Programme.find(params[:id])
 
     if @programme.update(programme_params)
-      flash[:notice] = "Programme a bien été modifié"
+      flash[:success] = "Programme a bien été modifié"
       redirect_to programme_path(@programme)
     else
       render 'edit'
@@ -76,7 +77,7 @@ class ProgrammesController < ApplicationController
   def destroy
     @programme = Programme.find(params[:id])
     @programme.destroy
-    flash[:notice] = "Le programme a bien été supprimé"
+    flash[:danger] = "Le programme a bien été supprimé"
     redirect_to programmes_path
   end
 
